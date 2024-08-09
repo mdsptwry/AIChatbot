@@ -1,10 +1,13 @@
 'use client'
-import {Box, Button, Stack, TextField} from "@mui/material"
-import { Content } from "next/font/google";
-import Image from "next/image";
+import {Box, Button, CssBaseline, Stack, Switch, 
+  TextField, createTheme, ThemeProvider, Typography} from "@mui/material"
+//import { Content } from "next/font/google";
+//import Image from "next/image";
+//{ Messages } from "openai/resources/beta/threads/messages";
 import {useState, useEffect, useRef} from "react";
 
 export default function Home() {
+  const [darkMode, setDarkMode] = useState(false);
   const [messages, setMessages] = useState([
     {
     role: 'assistant',
@@ -13,7 +16,7 @@ export default function Home() {
   ])
 
   const [message, setMessage] = useState('')
-  // const messagesEndRef = useRef(null)
+  const messagesEndRef = useRef(null)
 
   const sendMessage = async()=>{
     setMessage('')
@@ -22,6 +25,7 @@ export default function Home() {
       {role: 'user', content: message},
       {role: 'assistant', content:""}
     ])
+
     const response = fetch('/chat', {
       method: "POST",
       headers:{
@@ -56,17 +60,49 @@ export default function Home() {
     })
   }
 
-  // // Function to scroll to the bottom of the messages container
-  // const scrollToBottom = () => {
-  //   messagesEndRef.current?.scrollIntoView({behavior: "smooth"})
-  // }
+  // Function to scroll to the bottom of the messages container
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({behavior: "smooth"})
+  }
 
-  // useEffect (() => {
-  //   scrollToBottom();
-  // }, [messages])
+  useEffect (() => {
+    scrollToBottom();
+  }, [messages])
+
+  const handleToggle = () => {
+    setDarkMode(!darkMode);
+  };
+
+  const lightTheme = createTheme({
+    palette: {
+      mode: 'light',
+      primary: {
+        main: '#1E88E5',
+      },
+      secondary: {
+        main: '#FB8C00',
+      },
+    },
+    
+  });
+
+  const darkTheme = createTheme({
+    palette: {
+      mode: 'dark',
+      primary: {
+        main: '#CE93D8',
+      },
+      secondary: {
+        main: '#80CBC4',
+      },
+    },
+    
+  });
 
 
   return (
+    <ThemeProvider theme={darkMode? darkTheme: lightTheme}>
+    <CssBaseline />
     <Box
       width={"100vw"}
       height={"50vw"}
@@ -75,15 +111,22 @@ export default function Home() {
       justifyContent={"center"}
       alignItems={"center"}
     >
+      <Typography variant="h2" marginTop={7}>AI Chatbot</Typography>
       <Stack
-      marginTop={10}
+       marginTop={2}
        direction={"column"}
        width={'600px'}
        height={'700px'}
-       border={'1px solid black'}
+       border={'5px solid'}
+       borderColor={darkMode? 'white': 'black'}
+       borderRadius={"25px"}
        p={2}
        spacing={2}
       >
+        <Box>
+          <Switch checked={darkMode} onChange={handleToggle}></Switch> 
+          {darkMode ? "Dark Mode": "Light Mode"}
+        </Box>
         <Stack
           direction={'column'}
           spacing={2}
@@ -114,6 +157,7 @@ export default function Home() {
               </Box>
             ))
           }
+          <div ref={messagesEndRef}/>
         </Stack>
         <Stack 
           direction={'row'}
@@ -124,6 +168,16 @@ export default function Home() {
             fullWidth
             value={message}
             onChange={(e)=>setMessage(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key==='Enter'){
+                e.preventDefault()
+                sendMessage()
+              }
+            }}
+            multiline
+            maxRows={4}
+            variant="outlined"
+            sx={{resize: 'none'}}
             />
             <Button
               variant="contained"
@@ -132,5 +186,6 @@ export default function Home() {
         </Stack>
       </Stack>
     </Box>
+    </ThemeProvider>
   )
 }
