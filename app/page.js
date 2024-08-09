@@ -109,6 +109,7 @@ export default function Home() {
       flexDirection={"column"}
       justifyContent={"center"}
       alignItems={"center"}
+      bgcolor={darkMode ? '#121212' : '#C7EBDF'}
     >
       <Typography variant="h2" marginTop={7}>AI Chatbot</Typography>
       <Stack
@@ -121,6 +122,8 @@ export default function Home() {
        borderRadius={"25px"}
        p={2}
        spacing={2}
+       bgcolor={darkMode ? 'black' : 'white'}
+       sx={{boxShadow: 4}}
       >
         <Box>
           <Switch checked={darkMode} onChange={handleToggle}></Switch> 
@@ -176,7 +179,7 @@ export default function Home() {
             multiline
             maxRows={4}
             variant="outlined"
-            sx={{resize: 'none'}}
+            sx={{resize: 'none', boxShadow: 2, bgcolor: darkMode ? '#121212' : '#E0FFFF'}}
             />
             <Button
               variant="contained"
