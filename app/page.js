@@ -1,16 +1,9 @@
 'use client'
-<<<<<<< HEAD
 import {Box, Button, CssBaseline, Stack, Switch, 
   TextField, createTheme, ThemeProvider, Typography} from "@mui/material"
 //import { Content } from "next/font/google";
 //import Image from "next/image";
 //{ Messages } from "openai/resources/beta/threads/messages";
-=======
-// import {Box, Button, Stack, TextField} from "@mui/material"
-import {Box, Button, Stack, TextField, createTheme, ThemeProvider, CssBaseline, Switch, Typography} from "@mui/material"
-// import { Content } from "next/font/google";
-// import Image from "next/image";
->>>>>>> a43c36a942aa2de75bfe67569521124f5c50239f
 import {useState, useEffect, useRef} from "react";
 
 export default function Home() {
@@ -23,10 +16,7 @@ export default function Home() {
   ])
 
   const [message, setMessage] = useState('')
-<<<<<<< HEAD
   const messagesEndRef = useRef(null)
-=======
->>>>>>> a43c36a942aa2de75bfe67569521124f5c50239f
 
   const sendMessage = async()=>{
     setMessage('')
@@ -109,42 +99,8 @@ export default function Home() {
     
   });
 
-  const handleToggle = () => {
-    setDarkMode(!darkMode);
-  };
-
-  const lightTheme = createTheme({
-    palette: {
-      mode: 'light',
-      primary: {
-        main: '#1E88E5',
-      },
-      secondary: {
-        main: '#FB8C00',
-      },
-    },
-    
-  });
-
-  const darkTheme = createTheme({
-    palette: {
-      mode: 'dark',
-      primary: {
-        main: '#CE93D8',
-      },
-      secondary: {
-        main: '#80CBC4',
-      },
-    },
-    
-  });
-
   return (
-<<<<<<< HEAD
     <ThemeProvider theme={darkMode? darkTheme: lightTheme}>
-=======
-    <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
->>>>>>> a43c36a942aa2de75bfe67569521124f5c50239f
     <CssBaseline />
     <Box
       width={"100vw"}
@@ -154,7 +110,6 @@ export default function Home() {
       justifyContent={"center"}
       alignItems={"center"}
     >
-<<<<<<< HEAD
       <Typography variant="h2" marginTop={7}>AI Chatbot</Typography>
       <Stack
        marginTop={2}
@@ -163,31 +118,14 @@ export default function Home() {
        height={'700px'}
        border={'5px solid'}
        borderColor={darkMode? 'white': 'black'}
-=======
-      <Typography variant="h2" marginTop={3}>AI Chatbot</Typography>
-      <Stack
-      marginTop={2}
-       direction={"column"}
-       width={'600px'}
-       height={'700px'}
-       border={'5px solid '}
-       borderColor={darkMode ? 'white' : 'black'}
->>>>>>> a43c36a942aa2de75bfe67569521124f5c50239f
        borderRadius={"25px"}
        p={2}
        spacing={2}
       >
         <Box>
-<<<<<<< HEAD
           <Switch checked={darkMode} onChange={handleToggle}></Switch> 
           {darkMode ? "Dark Mode": "Light Mode"}
         </Box>
-=======
-        <Switch checked={darkMode} onChange={handleToggle}></Switch>
-        {darkMode ? "Dark mode" : "Light mode"}
-        </Box>
-        
->>>>>>> a43c36a942aa2de75bfe67569521124f5c50239f
         <Stack
           direction={'column'}
           spacing={2}
