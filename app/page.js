@@ -5,6 +5,7 @@ import {Box, Button, CssBaseline, Stack, Switch,
 //import Image from "next/image";
 //{ Messages } from "openai/resources/beta/threads/messages";
 import {useState, useEffect, useRef} from "react";
+import {PersonRounded, AssistantRounded} from '@mui/icons-material'
 
 export default function Home() {
   const [darkMode, setDarkMode] = useState(false);
@@ -94,6 +95,9 @@ export default function Home() {
       secondary: {
         main: '#FB8C00',
       },
+      background: {
+        default: '#C7EBDF'
+      },
     },
     
   });
@@ -107,10 +111,13 @@ export default function Home() {
       secondary: {
         main: '#80CBC4',
       },
+      background: {
+        default: '#121212'
+      },
     },
     
   });
-
+  
 
   return (
     <ThemeProvider theme={darkMode? darkTheme: lightTheme}>
@@ -158,6 +165,7 @@ export default function Home() {
                   message.role=== 'assistant' ? 'flex-start' : 'flex-end'
                 }
               >
+                {message.role=== 'assistant' ? <AssistantRounded /> : <PersonRounded />}
                 <Box
                   bgcolor={
                     message.role === 'assistant' 
