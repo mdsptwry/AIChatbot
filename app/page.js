@@ -11,14 +11,26 @@ export default function Home() {
   const [messages, setMessages] = useState([
     {
     role: 'assistant',
-    content: `Hi I'm the Headstarter Support Agent, how can I assist you today?` 
+    content: `Hi I'm MintChat, how can I assist you today?` 
     },
   ])
 
   const [message, setMessage] = useState('')
   const messagesEndRef = useRef(null)
+  // button color change when press 'enter'
+  const [buttonColor, setButtonColor] = useState('primary');
 
   const sendMessage = async()=>{
+
+    // Change button color to indicate message was sent
+    setButtonColor('secondary');
+
+    // Resent button color after 100ms
+    setTimeout(() => {
+      setButtonColor('primary');
+    }, 200);
+    
+    // message handling logic
     setMessage('')
     setMessages((messages)=>[
       ...messages,
@@ -99,21 +111,23 @@ export default function Home() {
     
   });
 
+
   return (
     <ThemeProvider theme={darkMode? darkTheme: lightTheme}>
     <CssBaseline />
     <Box
       width={"100vw"}
-      height={"50vw"}
+      height={"100vh"}
       display={"flex"}
       flexDirection={"column"}
       justifyContent={"center"}
       alignItems={"center"}
       bgcolor={darkMode ? '#121212' : '#C7EBDF'}
     >
-      <Typography variant="h2" marginTop={7}>AI Chatbot</Typography>
+      <Typography variant="h2" marginTop={3}>MintChat</Typography>
       <Stack
        marginTop={2}
+       marginBottom={6}
        direction={"column"}
        width={'600px'}
        height={'700px'}
@@ -183,6 +197,7 @@ export default function Home() {
             />
             <Button
               variant="contained"
+              color={buttonColor}
               onClick={sendMessage}
             >Send</Button>
         </Stack>
