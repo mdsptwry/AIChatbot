@@ -8,6 +8,7 @@ import {useState, useEffect, useRef} from "react";
 import {PersonRounded, AssistantRounded} from '@mui/icons-material'
 
 export default function Home() {
+
   const [darkMode, setDarkMode] = useState(false);
   const [messages, setMessages] = useState([
     {
