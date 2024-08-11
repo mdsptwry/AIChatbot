@@ -165,7 +165,14 @@ export default function Home() {
                   message.role=== 'assistant' ? 'flex-start' : 'flex-end'
                 }
               >
-                {message.role=== 'assistant' ? <AssistantRounded /> : <PersonRounded />}
+                <Box 
+                  display={'flex'} 
+                  flexDirection={message.role === 'assistant' ? 'row' : 'row-reverse'} 
+                  alignItems={'center'}
+                >
+                {message.role=== 'assistant' ? (
+                  <AssistantRounded /> ) : ( 
+                  <PersonRounded />)}
                 <Box
                   bgcolor={
                     message.role === 'assistant' 
@@ -175,9 +182,12 @@ export default function Home() {
                   color={'white'}
                   borderRadius={16}
                   p={3}
+                  marginLeft={message.role === 'assistant'? 1:0}
+                  marginRight={message.role === 'assistant'? 0: 1}
                 >
                   {message.content}
                 </Box>
+              </Box>
               </Box>
             ))
           }
