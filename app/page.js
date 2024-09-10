@@ -13,7 +13,7 @@ export default function Home() {
   const [messages, setMessages] = useState([
     {
     role: 'assistant',
-    content: `Hi I'm MintChat, your AI librarian. How can I assist you today?` 
+    content: `Hi I'm BiblioBot, your AI librarian. How can I assist you today?` 
     },
   ])
 
@@ -132,7 +132,7 @@ export default function Home() {
       alignItems={"center"}
       bgcolor={darkMode ? '#121212' : '#C7EBDF'}
     >
-      <Typography variant="h2" marginTop={3}>MintChat</Typography>
+      <Typography variant="h2" marginTop={3}>BiblioBot</Typography>
       <Stack
        marginTop={2}
        marginBottom={6}
